@@ -1,12 +1,12 @@
 print(wifi.sta.getip())
 --nil
 wifi.setmode(wifi.STATION)
-station_cfg={}
-station_cfg.ssid="HesionPublic"
-station_cfg.pwd="tsinghua"
 station_cfg_1={}
-station_cfg_1.ssid="Mustang"
-station_cfg_1.pwd="@1024@1024"
+station_cfg_1.ssid="HesionPublic"
+station_cfg_1.pwd="tsinghua"
+station_cfg={}
+station_cfg.ssid="Mustang"
+station_cfg.pwd="@1024@1024"
 if(wifi.sta.config(station_cfg))
 then
 --wifi.sta.autoconnect(1)

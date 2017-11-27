@@ -8,24 +8,20 @@ srv:listen(80, function(conn)
 		print(path)
 		if (path == "/")
 		then
-			sck:send(htmlcode_ON)
+			if(light_state)
+			then 
+				sck:send(htmlcode_ON)
+			else
+				sck:send(htmlcode_OFF)
+			end
 		elseif (path == "/light/on")
 		then
-			servo_angle(30)
 			sck:send(htmlcode_OFF)
-			tmr.alarm(1,3000,tmr.ALARM_SINGLE,function ()
-				servo_angle(90)
-			end)
+			LightOff()
 		elseif(path == "/light/off")
 		then
-			servo_angle(150)
 			sck:send(htmlcode_ON)
-			tmr.alarm(2,3000,tmr.ALARM_SINGLE,function ()
-				servo_angle(90)
-			end)
-		elseif(path == "/light/state")
-		then
-			sck:send(htmlcode_OFF)
+			LightOn()
 		else
 			print(path, " not supported")
 			sck:send("HTTP/1.1 404 Not Found\r\nContent-Type: text/html\r\n\r\n<h1>Not Found</h1>")
